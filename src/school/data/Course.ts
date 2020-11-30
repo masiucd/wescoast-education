@@ -16,15 +16,10 @@ export class Course {
 
     this.teacher.subjects.push(this.subject)
     this.students.forEach(student => {
-      // student.courses.push(this)
+      student.courses.push(this)
       console.log(this)
       console.log(student)
     })
-  }
-
-  addStudent(student: Student) {
-    this.students.push(student)
-    student.courses.push(this)
   }
 
   removeStudent(studentID: string): void {
@@ -34,5 +29,24 @@ export class Course {
     const student = this.students.find(student => student.id === studentID)
     return student && student
   }
-  updateStudent(student: Student): void {}
+
+  updateStudent(input: Student): void {
+    const studentToUpdate = this.getStudent(input.id)
+    if (!studentToUpdate) {
+      throw new Error(`no user found with id ${input.id}`)
+    }
+    this.students = this.students.map(student =>
+      student.id === input.id
+        ? {
+            ...student,
+            firstName: input.firstName ? input.firstName : student.firstName,
+            lastName: input.lastName ? input.lastName : student.lastName,
+          }
+        : student
+    )
+  }
+  addStudent(student: Student) {
+    this.students.push(student)
+    student.courses.push(this)
+  }
 }

@@ -29,9 +29,9 @@ import { nanoid } from "nanoid"
     swedish.addStudent(kim)
     swedish.addStudent(stina)
 
-    const students = [mike, jon, clara]
+    const students = [mike, jon, clara, kim, stina]
     const teachers = [boris, linda, mia]
-    const courses = [math, english, swedish]
+    const courses = [math, english, swedish, history]
 
     const init = () => {
       const v = new View(students, courses, teachers)

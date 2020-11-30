@@ -1,6 +1,7 @@
 import { Student } from "../data/Student"
 import { Course } from "../data/Course"
 import { Teacher } from "../data/Teacher"
+import { Subject } from "../data/Types"
 
 export class View {
   main: HTMLDivElement
@@ -79,7 +80,9 @@ export class View {
           `
         <li class="teacher">${teacher.firstName}-${teacher.lastName}</li>
         <p>${teacher.firstName} main subjects:</p>
-        ${teacher.subjects.map(subject => `<li class="subject">${subject}</li> `).join("")}
+        ${teacher.subjects
+          .map((subject: Subject) => `<li class="subject">${subject}</li> `)
+          .join("")}
       `
       )
       .join("")
@@ -89,8 +92,7 @@ export class View {
       .map(
         course =>
           `
-        <li class="course">${course.subject}</li>
-        <p>Students that read ${course.subject}</p>
+        <p>Students that study ${course.subject}</p>
         ${course.students
           .map((student: Student) => `<li>${student.firstName}- ${student.lastName} </li>`)
           .join("")}
@@ -110,8 +112,7 @@ export class View {
       ${this.renderTeachers()}
     `
     this.coursesList.innerHTML = `
-    <li class="title"> <strong>Courses List</strong> </li>
-      ${this.renderCourses()}
+    <li class="title course-title"> <strong>Courses List</strong> </li>
     `
     this.showDataButton.addEventListener("click", () => {
       this.studentList.classList.toggle("show")
@@ -122,13 +123,18 @@ export class View {
     this.coursesList.firstElementChild?.addEventListener("click", () => {
       const modal = this.getElement(".modal") as HTMLDivElement
       modal.classList.add("show-modal")
-      console.log("w")
 
       modal.innerHTML = `
-        <div class="modal-body">
-          <h1>Hello there</h1> 
-        </div>
+        <ul class="modal-body">
+          ${this.renderCourses()}
+          <button id="close-modal">X</button>          
+        </ul>
       `
+
+      const closeBtn = this.getElement("#close-modal")
+      closeBtn?.addEventListener("click", () => {
+        modal.classList.remove("show-modal")
+      })
     })
 
     document.querySelectorAll(".course").forEach(course => {
