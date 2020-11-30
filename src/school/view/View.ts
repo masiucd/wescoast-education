@@ -136,11 +136,5 @@ export class View {
         modal.classList.remove("show-modal")
       })
     })
-
-    document.querySelectorAll(".course").forEach(course => {
-      course.addEventListener("click", e => {
-        console.log("course")
-      })
-    })
   }
 }
