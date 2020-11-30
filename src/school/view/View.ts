@@ -112,7 +112,7 @@ export class View {
       ${this.renderTeachers()}
     `
     this.coursesList.innerHTML = `
-    <li class="title course-title"> <button>Courses List</button> </li>
+      <li class="title course-title"> <button>Courses List</button> </li>
     `
     this.showDataButton.addEventListener("click", () => {
       this.studentList.classList.toggle("show")
