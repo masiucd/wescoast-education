@@ -2,7 +2,6 @@ import { Course } from "./school/data/Course"
 import { Teacher } from "./school/data/Teacher"
 import { Student } from "./school/data/Student"
 import { View } from "./school/view/View"
-
 import { nanoid } from "nanoid"
 ;(() => {
   function controller() {
@@ -25,6 +24,8 @@ import { nanoid } from "nanoid"
     math.addStudent(jon)
     english.addStudent(clara)
     english.addStudent(stina)
+    history.addStudent(mike)
+    history.addStudent(stina)
     swedish.addStudent(kim)
     swedish.addStudent(stina)
 
@@ -37,7 +38,6 @@ import { nanoid } from "nanoid"
       v.render()
     }
 
-    console.log("boris", boris)
     return {
       init,
     }

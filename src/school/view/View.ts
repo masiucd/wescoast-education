@@ -6,8 +6,8 @@ export class View {
   main: HTMLDivElement
   wrapper: HTMLDivElement
   title: HTMLHeadElement
-  modalWrapper: HTMLDivElement
-  modalButton: HTMLButtonElement
+
+  showDataButton: HTMLButtonElement
   students: Student[]
   courses: Course[]
   teachers: Teacher[]
@@ -26,20 +26,19 @@ export class View {
     this.title = this.createElement("h1", "main-title") as HTMLHeadElement
     this.title.textContent = "WesCoast"
 
-    this.modalButton = this.createElement("button", "modal-btn") as HTMLButtonElement
-    this.modalButton.textContent = "show data"
-    this.modalWrapper = this.createElement("div", "modal-wrapper") as HTMLDivElement
+    this.showDataButton = this.createElement("button", "show-data-btn") as HTMLButtonElement
+    this.showDataButton.textContent = "show data"
 
     this.coursesList = this.createElement("ul", "courses-list") as HTMLUListElement
     this.studentList = this.createElement("ul", "students-list") as HTMLUListElement
-    this.teachersList = this.createElement("ul", "teachaers-list") as HTMLUListElement
+    this.teachersList = this.createElement("ul", "teachers-list") as HTMLUListElement
     this.coursesList.classList.add("hide")
     this.teachersList.classList.add("hide")
     this.studentList.classList.add("hide")
 
     this.wrapper.append(
       this.title,
-      this.modalButton,
+      this.showDataButton,
       this.coursesList,
       this.studentList,
       this.teachersList
@@ -78,7 +77,9 @@ export class View {
       .map(
         teacher =>
           `
-        <li>${teacher.firstName}-${teacher.lastName}</li>
+        <li class="teacher">${teacher.firstName}-${teacher.lastName}</li>
+        <p>${teacher.firstName} main subjects:</p>
+        ${teacher.subjects.map(subject => `<li class="subject">${subject}</li> `).join("")}
       `
       )
       .join("")
@@ -112,10 +113,28 @@ export class View {
     <li class="title"> <strong>Courses List</strong> </li>
       ${this.renderCourses()}
     `
-    this.modalButton.addEventListener("click", () => {
+    this.showDataButton.addEventListener("click", () => {
       this.studentList.classList.toggle("show")
       this.coursesList.classList.toggle("show")
       this.teachersList.classList.toggle("show")
+    })
+
+    this.coursesList.firstElementChild?.addEventListener("click", () => {
+      const modal = this.getElement(".modal") as HTMLDivElement
+      modal.classList.add("show-modal")
+      console.log("w")
+
+      modal.innerHTML = `
+        <div class="modal-body">
+          <h1>Hello there</h1> 
+        </div>
+      `
+    })
+
+    document.querySelectorAll(".course").forEach(course => {
+      course.addEventListener("click", e => {
+        console.log("course")
+      })
     })
   }
 }
