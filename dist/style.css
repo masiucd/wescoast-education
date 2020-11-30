@@ -127,3 +127,7 @@ ul li button {
   position: static;
   opacity: 1;
 }
+
+.title {
+  font-size: 2rem;
+}

@@ -1,6 +1,6 @@
-import { Course } from "./school/exercise/Course"
-import { Teacher } from "./school/exercise/Teacher"
-import { Student } from "./school/exercise/Student"
+import { Course } from "./school/data/Course"
+import { Teacher } from "./school/data/Teacher"
+import { Student } from "./school/data/Student"
 import { View } from "./school/view/View"
 
 import { nanoid } from "nanoid"
@@ -17,8 +17,9 @@ import { nanoid } from "nanoid"
     const mia = new Teacher(nanoid(), "Mia", "Jonson", [])
 
     const math = new Course(nanoid(), "math", [], boris)
-    const english = new Course(nanoid(), "english", [], boris)
-    const swedish = new Course(nanoid(), "swedish", [], boris)
+    const english = new Course(nanoid(), "english", [], linda)
+    const swedish = new Course(nanoid(), "swedish", [], mia)
+    const history = new Course(nanoid(), "history", [], boris)
 
     math.addStudent(mike)
     math.addStudent(jon)
@@ -35,6 +36,8 @@ import { nanoid } from "nanoid"
       const v = new View(students, courses, teachers)
       v.render()
     }
+
+    console.log("boris", boris)
     return {
       init,
     }

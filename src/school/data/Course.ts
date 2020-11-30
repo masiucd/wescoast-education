@@ -14,7 +14,10 @@ export class Course {
     this.students = students
     this.teacher = teacher
 
-    // this.teacher.courses.push(this)
+    // console.log("this", this.subject)
+    // @ts-ignore
+    // this.teacher.subjects.push(this)
+    this.teacher.subjects.push(this.subject)
     // this.students.forEach(student => {
     //   student.courses.push(this)
     // })

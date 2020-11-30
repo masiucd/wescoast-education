@@ -1,14 +1,13 @@
-import { Student } from "../exercise/Student"
-import { Course } from "../exercise/Course"
-import { Teacher } from "../exercise/Teacher"
+import { Student } from "../data/Student"
+import { Course } from "../data/Course"
+import { Teacher } from "../data/Teacher"
 
 export class View {
   main: HTMLDivElement
   wrapper: HTMLDivElement
   title: HTMLHeadElement
-
+  modalWrapper: HTMLDivElement
   modalButton: HTMLButtonElement
-
   students: Student[]
   courses: Course[]
   teachers: Teacher[]
@@ -29,6 +28,7 @@ export class View {
 
     this.modalButton = this.createElement("button", "modal-btn") as HTMLButtonElement
     this.modalButton.textContent = "show data"
+    this.modalWrapper = this.createElement("div", "modal-wrapper") as HTMLDivElement
 
     this.coursesList = this.createElement("ul", "courses-list") as HTMLUListElement
     this.studentList = this.createElement("ul", "students-list") as HTMLUListElement
@@ -42,7 +42,7 @@ export class View {
       this.modalButton,
       this.coursesList,
       this.studentList,
-      this.teachersList,
+      this.teachersList
     )
 
     this.main.append(this.wrapper)
@@ -66,10 +66,10 @@ export class View {
       .map(
         student =>
           `
-        <li>${student.firstName}-${student.lastName}</li>
+        <li class="student">${student.firstName}-${student.lastName}</li>
         <p>${student.firstName} currently study:</p>
-        ${student.courses.map(course => `<li>${course.subject}</li>`).join("")}
-      `,
+        ${student.courses.map((course: Course) => `<li>${course.subject}</li>`).join("")}
+      `
       )
       .join("")
   }
@@ -79,7 +79,7 @@ export class View {
         teacher =>
           `
         <li>${teacher.firstName}-${teacher.lastName}</li>
-      `,
+      `
       )
       .join("")
   }
@@ -91,25 +91,25 @@ export class View {
         <li class="course">${course.subject}</li>
         <p>Students that read ${course.subject}</p>
         ${course.students
-          .map(student => `<li>${student.firstName}- ${student.lastName} </li>`)
+          .map((student: Student) => `<li>${student.firstName}- ${student.lastName} </li>`)
           .join("")}
-      `,
+      `
       )
       .join("")
   }
 
   render() {
     this.studentList.innerHTML = `
-      <li> <strong> Student List </strong> </li>
+      <li class="title"> <strong> Student List </strong> </li>
       ${this.renderStudents()}
     `
 
     this.teachersList.innerHTML = `
-      <li> <strong>Teachers List</strong> </li>
+    <li class="title"> <strong>Teachers List</strong> </li>
       ${this.renderTeachers()}
     `
     this.coursesList.innerHTML = `
-      <li> <strong>Courses List</strong> </li>
+    <li class="title"> <strong>Courses List</strong> </li>
       ${this.renderCourses()}
     `
     this.modalButton.addEventListener("click", () => {
