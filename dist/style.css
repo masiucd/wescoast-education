@@ -15,13 +15,40 @@ body {
     "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.wrapper {
+#root {
+  max-width: 900px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.list-wrapper {
   margin: 5rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   max-width: 900px;
+}
+
+table {
+  font-size: 10px;
+}
+thead,
+tbody {
+  padding: 1rem;
+}
+thead tr {
+  font-size: 2.5rem;
+  text-transform: capitalize;
+  padding: 1rem;
+}
+tbody tr {
+  font-size: 1.8rem;
+  padding: 1rem;
 }
 
 .main-title {

@@ -4,10 +4,10 @@ import { DisplayData, DisplayDataItem } from "../types"
 
 export class ListView {
   rootElement: HTMLDivElement
-  displayData: DisplayData
+  displayData: Array<any>
   mainTitle: string
   titles: string[]
-  constructor(rootElement: unknown, displayData: DisplayData, mainTitle: string, titles: string[]) {
+  constructor(rootElement: unknown, displayData: Array<any>, mainTitle: string, titles: string[]) {
     this.rootElement = rootElement as HTMLDivElement
     this.displayData = displayData
     this.mainTitle = mainTitle
@@ -22,17 +22,29 @@ export class ListView {
 
   render(): void {
     const html = `
-      <table class="list-wrapper">
-        <thead>
+    <div class="list-wrapper">
+      <table>
+          <thead>
           ${this.titles.map(t => `<th>${t}</th>`).join("")}
-        </thead>
+          </thead>
           <tbody class="list list-${this.mainTitle}">
-              
-              
+              ${(this.displayData as Array<Course | Teacher>)
+                .map(d => {
+                  // @ts-ignore
+                  const showCase = d.showCase()
+                  return `
+                <tr>
+                  ${Object.keys(showCase)
+                    .map(key => `<td>${showCase[key]}</td>`)
+                    .join("")}
+                  
+                </tr>`
+                })
+                .join("")}
           </tbody>
       </table>
+    </div>
     `
     this.rootElement.insertAdjacentHTML("beforeend", html)
   }
 }
-// ${this.displayData.map((d: DisplayDataItem) => `${d.id}`)}

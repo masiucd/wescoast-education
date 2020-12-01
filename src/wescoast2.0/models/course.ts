@@ -13,11 +13,10 @@ export class Course {
     this.duration = duration
   }
 
-  get CourseInfo() {
+  showCase() {
     return {
-      courseTitle: this.title,
-      courseDesc: this.about,
-      courseLength: this.duration,
+      title: this.title,
+      duration: this.duration,
     }
   }
 }

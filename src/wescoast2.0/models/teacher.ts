@@ -1,12 +1,25 @@
 import { Person } from "./person"
 import { Subject } from "../types"
 import { nanoid } from "nanoid"
+
 export class Teacher extends Person {
   subjects: Subject[]
   constructor(id: string, firstName: string, lastName: string, email: string, age: number) {
     super(id, firstName, lastName, email, age)
     this.subjects = []
   }
+
+  showCase() {
+    return {
+      name: `${this.firstName}-${this.lastName}`,
+      email: this.email,
+      age: this.age,
+    }
+  }
+
+  // addSubject(subject: Subject): void {
+  //   this.subjects.push(subject)
+  // }
 }
 
 export default [
