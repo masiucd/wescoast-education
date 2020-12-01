@@ -12,6 +12,14 @@ export class Course {
     this.about = about
     this.duration = duration
   }
+
+  get CourseInfo() {
+    return {
+      courseTitle: this.title,
+      courseDesc: this.about,
+      courseLength: this.duration,
+    }
+  }
 }
 
 export default [
