@@ -16,6 +16,10 @@ const modalView = <T>(
 ) => {
   const view = listView(parentElement, xs, title, subTitles)
 
+  let messageForPerson = ""
+  const updateText = (msg: string) => {
+    messageForPerson = msg
+  }
   const updateAdminMediator = () => {
     console.log(adminMediator)
   }
@@ -25,6 +29,7 @@ const modalView = <T>(
     const html = `
     <div class="modal-container">
       ${view.rawHtml()}
+      ${messageForPerson}
       <button class="close-modal">
         ❌
       </button>
@@ -48,14 +53,11 @@ const modalView = <T>(
             `Student ${person.firstName} ${person.lastName} has been registered for the course ${info}`
           )
 
+          const confirmationText = `You have now been registered to the ${event.target.innerText} Course`
+          updateText(confirmationText)
+
           updateAdminMediator()
-          // if ("send" in this.data) {
-          //   const confirmationText = `You have now been registered to the ${event.target.innerText} Course`
-          //   this.data.send(confirmationText, this.admin) // sending from this student, to itself and to admin
-          //   this.updateText(confirmationText)
-          //   console.log(this.admin.adminMediator?.members)
-          //   this.updateHtml()
-          // }
+          init()
         })
       }
     })
