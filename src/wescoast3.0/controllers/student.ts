@@ -1,10 +1,12 @@
 import { courses } from "../models/course"
-import { students } from "../models/students"
+import { students } from "../models/student"
 import { Person } from "../types"
 import { listView } from "../views/list-view"
 import { modalView } from "../views/modal-view"
 
-const studentController = (parentElement: HTMLDivElement) => {
+const studentController = (
+  parentElement: HTMLDivElement = document.querySelector(".main") as HTMLDivElement
+) => {
   const view = listView(parentElement, students, "students", ["name", "email", "age"])
 
   const render = () => {

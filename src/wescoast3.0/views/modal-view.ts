@@ -1,3 +1,5 @@
+import { adminMediator } from "../mediator/main"
+import { Service } from "../mediator/service"
 import { Person, Subject } from "../types"
 import { listView } from "./list-view"
 
@@ -14,6 +16,10 @@ const modalView = <T>(
 ) => {
   const view = listView(parentElement, xs, title, subTitles)
 
+  const updateAdminMediator = () => {
+    console.log(adminMediator)
+  }
+
   const render = () => {
     parentElement.classList.add("show-modal")
     const html = `
@@ -28,7 +34,8 @@ const modalView = <T>(
     document.querySelector(".close-modal")?.addEventListener("click", () => {
       parentElement.classList.remove("show-modal")
     })
-
+    const studentService = new Service(person.firstName)
+    adminMediator.register(studentService)
     const tds = document.querySelectorAll(".modal tbody tr td") as NodeList
 
     Array.from(tds).forEach(td => {
@@ -37,7 +44,11 @@ const modalView = <T>(
 
       if (info === "english" || info === "french" || info === "history" || info === "math") {
         td.addEventListener("click", (event: any) => {
-          console.log("info", info)
+          studentService.send(
+            `Student ${person.firstName} ${person.lastName} has been registered for the course ${info}`
+          )
+
+          updateAdminMediator()
           // if ("send" in this.data) {
           //   const confirmationText = `You have now been registered to the ${event.target.innerText} Course`
           //   this.data.send(confirmationText, this.admin) // sending from this student, to itself and to admin
