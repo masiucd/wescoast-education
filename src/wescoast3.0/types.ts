@@ -4,7 +4,7 @@ export interface Person {
   lastName: string
   email: string
   age: number
-  type: "t" | "s"
+  type: "t" | "s" | "a"
   showCase?: () => Record<string, any>
 }
 

@@ -120,8 +120,8 @@ li {
 }
 
 .admin-content {
-  transform: translateY(-1000%);
-  transition: 400ms ease-in-out all;
+  /* transform: translateY(-1000%); */
+  /* transition: 200ms ease-in-out all; */
 }
 
 .show-admin-content {
