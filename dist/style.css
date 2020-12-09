@@ -124,6 +124,14 @@ li {
   /* transition: 200ms ease-in-out all; */
 }
 
+.admin-messages-list li {
+  font-size: 0.85em;
+  margin: 0.5rem 0;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--green);
+}
+
 .show-admin-content {
   transform: translateY(0);
 }

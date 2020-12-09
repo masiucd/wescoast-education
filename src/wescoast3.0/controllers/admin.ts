@@ -1,9 +1,11 @@
 import { admin as adminCreator } from "../models/admin"
+import { adminMediator } from "../mediator/main"
 import { adminView } from "../views/admin-view"
 
 const adminController = (parentElement: HTMLDivElement) => {
   const view = adminView(
     parentElement,
+    adminMediator,
     adminCreator({
       id: 204,
       firstName: "Bruce",

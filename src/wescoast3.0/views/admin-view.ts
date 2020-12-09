@@ -1,8 +1,8 @@
-import { AdminMediator, adminMediator } from "../mediator/main"
+import { AdminMediator } from "../mediator/main"
 import { Service } from "../mediator/service"
 import { Person } from "../types"
 
-const adminView = (parentElement: HTMLDivElement, admin: Person) => {
+const adminView = (parentElement: HTMLDivElement, adminMediator: AdminMediator, admin: Person) => {
   const adminService = new Service(admin.firstName)
 
   let xs: Record<string, Record<string, any>>[] = []
