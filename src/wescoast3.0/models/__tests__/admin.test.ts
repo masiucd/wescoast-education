@@ -1,7 +1,7 @@
 import * as admin from "../admin"
 import { Person } from "../../types"
-describe("admin controller", () => {
-  test("should create a admin model with expected values ", () => {
+describe("admin model", () => {
+  test("should create an admin model with expected values ", () => {
     const adminRecord: Person = {
       id: 1,
       firstName: "bob",
@@ -11,12 +11,19 @@ describe("admin controller", () => {
       type: "a",
     }
 
-    const a = admin.admin(adminRecord)
+    const adminModel = admin.admin(adminRecord)
 
-    expect(a.id).toBe(adminRecord.id)
-    expect(a.age).toBe(adminRecord.age)
-    expect(a.firstName).toBe(adminRecord.firstName)
-    expect(a.lastName).toBe(adminRecord.lastName)
-    expect(a.type).toBe(adminRecord.type)
+    expect(adminModel.id).toBe(adminRecord.id)
+    expect(adminModel.age).toBe(adminRecord.age)
+    expect(adminModel.firstName).toBe(adminRecord.firstName)
+    expect(adminModel.lastName).toBe(adminRecord.lastName)
+    expect(adminModel.type).toBe(adminRecord.type)
+
+    const showCaseSpy = jest.spyOn(adminModel, "showCase")
+    expect(adminModel.showCase().name).toBe(`${adminRecord.firstName} ${adminRecord.lastName}`)
+    expect(adminModel.showCase().email).toBe(adminRecord.email)
+    expect(adminModel.showCase().age).toBe(adminRecord.age.toString())
+
+    expect(showCaseSpy).toHaveBeenCalledTimes(3)
   })
 })
