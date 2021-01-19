@@ -13,7 +13,7 @@ const adminController = (parentElement: HTMLDivElement) => {
       age: 45,
       email: "batman@io.com",
       type: "a",
-    })
+    }),
   )
 
   const render = () => {
