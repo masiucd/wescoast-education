@@ -1,16 +1,17 @@
 import { courses } from "../models/course"
 import { listView } from "../views/list-view"
 
-const courseController = (parentElement: HTMLDivElement) => {
+function courseController(parentElement: HTMLDivElement) {
   const view = listView(parentElement, courses, "courses", ["title", "duration"])
 
-  const render = () => {
+  function render() {
     view.init()
   }
 
-  const init = () => {
+  function init() {
     render()
   }
+
   return {
     init,
   }

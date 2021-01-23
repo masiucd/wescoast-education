@@ -6,7 +6,8 @@ describe("CorseController", () => {
     const course = courseController.courseController(parentElement)
 
     const courseInitSpy = jest.spyOn(course, "init")
+
     course.init()
-    expect(courseInitSpy).toHaveBeenCalled()
+    expect(courseInitSpy).toHaveBeenCalledTimes(1)
   })
 })
