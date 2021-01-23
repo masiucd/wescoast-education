@@ -1,6 +1,11 @@
-const listView = <T>(parentElement: HTMLDivElement, xs: T[], title: string, subTitles: string[]) => {
+const listView = <T>(
+  parentElement: HTMLDivElement,
+  xs: T[],
+  title: string,
+  subTitles: string[],
+) => {
   const rawHtml = () =>
-    `   
+    `
     <div class="table-wrapper wrapper-${title}">
     <table class="${title}">
         <caption>${title}</caption>
@@ -44,7 +49,7 @@ const listView = <T>(parentElement: HTMLDivElement, xs: T[], title: string, subT
           handler(parseInt(tr.dataset.id!, 10))
         }
         // sessionStorage.setItem("user", String(tr.dataset.id))
-      })
+      }),
     )
   }
 
