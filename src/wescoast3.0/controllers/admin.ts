@@ -2,7 +2,7 @@ import { admin as adminCreator } from "../models/admin"
 import { adminMediator } from "../mediator/main"
 import { adminView } from "../views/admin-view"
 
-const adminController = (parentElement: HTMLDivElement) => {
+function adminController(parentElement: HTMLDivElement) {
   const view = adminView(
     parentElement,
     adminMediator,
@@ -13,14 +13,14 @@ const adminController = (parentElement: HTMLDivElement) => {
       age: 45,
       email: "batman@io.com",
       type: "a",
-    }),
+    })
   )
 
-  const render = () => {
+  function render() {
     view.init()
   }
 
-  const init = () => {
+  function init() {
     render()
   }
 

@@ -1,4 +1,7 @@
 import * as courseController from "../course"
+import * as listView from "../../views/list-view"
+
+const listViewSpy = jest.spyOn(listView, "listView")
 
 describe("CorseController", () => {
   test("when call init should render course controller ", () => {
@@ -9,5 +12,6 @@ describe("CorseController", () => {
 
     course.init()
     expect(courseInitSpy).toHaveBeenCalledTimes(1)
+    expect(listViewSpy).toHaveBeenCalledTimes(1)
   })
 })
