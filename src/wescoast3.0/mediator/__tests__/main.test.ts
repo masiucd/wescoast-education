@@ -1,7 +1,7 @@
 import * as adminMediator from "../main"
 import { Service } from "../service"
 
-jest.mock("../service") // Service will be mocked
+jest.mock("../service")
 
 const mockedService = <jest.Mock<Service>>Service
 
@@ -35,7 +35,7 @@ describe("mediator", () => {
   })
 
   test("when register a new service ", () => {
-    const bob = new Service("bob")
+    new Service("bob")
     expect(mockedService).toHaveBeenCalled()
   })
 })

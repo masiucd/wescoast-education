@@ -16,7 +16,7 @@ describe("service", () => {
     expect(miaService.send).toHaveBeenCalledWith(message)
   })
 
-  // Ignore this test
+  // Ignore this test!!!
   // I just wanted to test a private method and see how to implement one
   test("spy on private methods", () => {
     const name = "mia"

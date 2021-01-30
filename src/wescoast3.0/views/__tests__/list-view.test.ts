@@ -20,7 +20,7 @@ describe("listView", () => {
     const parentElement = document.createElement("div")
     const xs = [p]
     const title = "title"
-    const subTitles = [""]
+    const subTitles = ["a", "b", "c"]
 
     const lv = listView.listView<Person>(parentElement, xs, title, subTitles)
     const lvSpy = jest.spyOn(lv, "init")
@@ -28,5 +28,8 @@ describe("listView", () => {
     lv.init()
     expect(lvSpy).toHaveBeenCalledTimes(1)
     expect(p.showCase).toHaveBeenCalledTimes(1)
+
+    expect(typeof lv.onClick).toBe("function")
+    expect(typeof lv.rawHtml).toBe("function")
   })
 })

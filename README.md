@@ -10,4 +10,10 @@
   $ npm run dev / yarn dev
 ```
 
+## run the tests
+
+```bash
+$ yarn/npm run jest --watchAll
+```
+
 Have Fun ! 😉ƛ🥤
